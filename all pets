@@ -1,0 +1,25 @@
+function unlockAllPets() {
+    var e = Boot.prototype.game._state._states.get("Boot")._gameData.pet;
+    
+    e.forEach(e => {
+        Boot.prototype.game._state._current.user.source.kennel.addPet(e.ID.toString(), 9999999999, 26376, 100);
+        Boot.prototype.game._state._current.user.source.kennel.addPet(e.ID.toString(), 9999999999, 26376, 100);
+    });
+
+    Boot.prototype.game._state._current.user.source.kennel._encounterInfo._data.pets = [];
+    e.forEach(e => {
+        Boot.prototype.game._state._current.user.source.kennel._encounterInfo._data.pets.push({firstSeenDate: Date.now(), ID: e.ID, timesBattled: 1, timesRescued: 1});
+        Boot.prototype.game._state._current.user.source.kennel._encounterInfo._data.pets.push({firstSeenDate: Date.now(), ID: e.ID, timesBattled: 1, timesRescued: 1});
+    });
+
+    console.log("All pets have been added successfully!");
+}
+
+unlockAllPets();
+
+Boot.prototype.game._state._current.user.source.kennel.updated = true;
+Boot.prototype.game._state._current.user.source.saveEnabled = true;
+Boot.prototype.game._state._current.user.source.forceSaveCharacter();
+Boot.prototype.game._state._current.user.source.appearanceChanged = true;
+
+//CrackinPMG's script
