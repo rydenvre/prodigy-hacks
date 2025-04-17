@@ -1,0 +1,17 @@
+function unlockAllClothing() {
+  ["hat", "outfit", "boots"].forEach(type => {
+    var itemType = `Boot.prototype.game._state._current.user.source.backpack.data.${type}`;
+    eval(`${itemType} = []`), eval(`${itemType}.length = 0`);
+    var itemsData = Boot.prototype.game._state._states.get("Boot")._gameData[type];
+    itemsData.forEach(item => {
+      eval(`${itemType}.push({ "ID": item.ID, "N": 1 })`);
+    });
+  });
+  Boot.prototype.game._state._current.user.source.backpack.updated = true;
+  console.log(`Unlocked all Clothing.`);
+}
+unlockAllClothing();
+source = Boot.prototype.game._state._current.user.source;
+source.saveEnabled = true;
+source.forceSaveCharacter();
+source.appearanceChanged = true;
